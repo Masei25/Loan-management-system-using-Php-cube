@@ -1,0 +1,46 @@
+{% extends "layout/header.twig" %}
+
+{% block title %}
+	Register
+{% endblock title %}
+
+{% block main %}
+	<!--/contact-->
+	<section class="contact py-5">
+		<div class="container py-md-4 mt-md-3 w-50 mx-auto">
+			<h2 class="heading-agileinfo">Register <span>Get loan access</span></h2>
+			<span class="w3-line black"></span>
+			<div class="mt-md-5 pt-5">
+				
+				<div class="contact_grid_right mt-5">
+					<h6>New User Registeration.</h6>
+					<form action="#" method="post">
+						<div class="contact_left_grid">
+							
+							{{get_notification('firstname')}}
+							<input type="text" name="firstname" id="firstname" placeholder="First Name" class="{{get_notification('firstname') ? 'bod' : ''}}">
+							{{get_notification('lastname')}}
+							<input type="text" name="lastname" id="lastname" placeholder="Last Name" class="{{get_notification('lastname') ? 'bod' : ''}}">
+							{{get_notification('email')}}
+							<input type="email" name="email" id="email" placeholder="Email" class="{{get_notification('email') ? 'bod' : ''}}">
+							{{get_notification('phone')}}
+							<input type="text" name="phone" id="phone" placeholder="Phone Number" class="{{get_notification('phone') ? 'bod' : ''}}">
+							{{get_notification('transpin')}}				
+							<input type="password" name="transpin" id="transpin" placeholder="Create Transaction Pin" class="{{get_notification('transpin') ? 'bod' : ''}}">				
+							<input type="password" name="transpin2" id="transpin2" placeholder="Confirm Transaction Pin">
+							{{get_notification('password')}}				
+							<input type="password" name="password" id="password" placeholder="Enter a password" class="{{get_notification('password') ? 'bod' : ''}}">				
+							<input type="password" name="password2" id="pssword2" placeholder="Confirm password">
+							<input type="submit" value="Submit">
+							<input type="reset" value="Clear" class="mt-2">
+							<div class="clearfix"> </div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	{{remove_notification()}}
+{% endblock main %}
+
+	

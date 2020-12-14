@@ -15,11 +15,15 @@ return array(
     'cache' => false,
 
     #Make App\Core\Http\Request accessible from view via _req
-    'embed_request' => false,
+    'embed_request' => true,
     
     #Functions allowed in views
     'functions' => array(
-        'var_dump'
+        'var_dump',
+        'notification',
+        'get_notification',
+        'remove_notification',
+        'is_authenticated'
     ),
 
     #Filters allowed in view

@@ -1,9 +1,9 @@
 <?php
 
-use App\Middlewares\Authentication;
-use App\Middlewares\CsrfMiddleware;
+use App\Middlewares\AuthMiddleware;
+use App\Middlewares\CheckAuthMiddleware;
 
 return array(
-    'auth' => Authentication::class,
-    'csrf' => CsrfMiddleware::class
+    'auth' => AuthMiddleware::class,
+    'auth_check' => CheckAuthMiddleware::class
 );

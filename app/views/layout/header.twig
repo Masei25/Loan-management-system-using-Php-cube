@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>
+			{% block title %}{% endblock title %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+		<script>
+			addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+            }, false);
+
+            function hideURLbar() {
+            window.scrollTo(0, 1);
+            }
+		</script>
+
+		<!-- Bootstrap Core CSS -->
+		<link href="{{asset('css/bootstrap.css')}}" rel='stylesheet' type='text/css'/>
+		<link
+		href="{{('css/style.css')}}" rel='stylesheet' type='text/css'/>
+		<!-- pop up box -->
+		<link
+		href="{{asset('css/popuo-box.css')}}" rel="stylesheet" type="text/css" media="all"/>
+		<!-- font-awesome icons -->
+		<link href="{{asset('css/fontawesome-all.min.css')}}" rel="stylesheet">
+		<!-- //Custom Theme files -->
+		<!-- online fonts -->
+		<!-- titles -->
+		<link
+		href="//fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet"> <!-- body -->
+		<link href="//fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
+		<link rel="shortcut icon" type="image/png" sizes="16x16" href="{{asset('images/favicon.png')}}">
+		{{css('style')}}
+		{{css('tailwind')}}
+		{{jscript('cube')}}
+	</head>
+
+	<body>
+        
+		<!-- header -->
+		<header>
+			<div class="top">
+				<div class="container">
+					<div class="t-op row">
+						<div class="col-sm-6 top-middle">
+							<ul>
+								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+								<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+							</ul>
+						</div>
+						<div class="col-sm-6 top-left">
+							<ul>
+								<li>
+									<i class="fas fa-phone"></i>
+									+021 365 777</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<nav class="navbar navbar-expand-lg navbar-light">
+					<h1>
+						{% if is_authenticated() %}
+							<a class="navbar-brand text-capitalize" href="{{url('/dashboard')}}">Home Loan</a>
+						{% else %}
+							<a class="navbar-brand text-capitalize" href="{{url('/')}}">Home Loan</a>	
+						{% endif %}	
+					</h1>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav text-center  ml-lg-auto">
+							{% if is_authenticated() %}
+							{% else %}
+							<li class="nav-item mr-3 {{req.url() == url('/') ? 'active'}}">
+								<a class="nav-link" href="{{url('/')}}">Home</a>
+							</li>
+							{% endif %}
+
+							{% if is_authenticated() %}
+							
+							{% else %}
+							<li class="nav-item  mr-3 {{req.url() == url('/about') ? 'active'}}">
+								<a class="nav-link" href="{{url('/about')}}">About</a>
+							</li>	
+							{% endif %}
+							
+							{% if is_authenticated() %}
+							
+							{% else %}
+							<li class="nav-item  mr-3 {{req.url() == url('/services') ? 'active'}}">
+								<a class="nav-link" href="{{url('/services')}}">Services</a>
+							</li>
+							{% endif %}
+
+							{% if is_authenticated() %}
+							<li class="nav-item  mr-3 {{req.url() == url('/services') ? 'active'}}">
+								<a class="nav-link flex" href="{{url('/services')}}">
+								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+								<p>Hi {{req.user.firstname}}</p>
+								</a>
+							</li>
+							{% else %}
+							<li class="nav-item dropdown mr-3 {{req.url().matches('/(login|register)') ? 'active'}}">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Loan Services
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="{{url('/login')}}">Login</a>
+									<a class="dropdown-item" href="{{url('/register')}}">Register</a>
+								</div>
+							</li>
+							{% endif %}
+							
+							{% if is_authenticated() %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{url('/dashboard/logout')}}">logout</a>
+							</li>
+							{% else %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{url('/contact')}}">contact</a>
+							</li>
+							{% endif %}
+							
+							
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+
+        {% block main %}
+        
+        {% endblock %}
+
+		<!--footer-->
+		<footer>
+			<div class="container py-md-4 mt-md-3">
+				<div class="row footer-top-w3layouts-agile py-5">
+					<div class="col-lg-3 col-md-6 col-sm-6 footer-grid">
+						<div class="footer-title">
+							<h3>About Us</h3>
+						</div>
+						<div class="footer-text">
+							<p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. lacinia eget consectetur sed, convallis at tellus..</p>
+
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6 footer-grid">
+						<div class="footer-title">
+							<h3>Contact Us</h3>
+						</div>
+						<div class="footer-office-hour">
+							<ul>
+								<li class="hd">Address :</li>
+								<li>No.27 - 5549436 street lorem, Newyork City, USA</li>
+
+							</ul>
+							<ul>
+								<li class="hd">Phone:+ 1 (234) 567 8901</li>
+								<li class="hd">Email:
+									<a href="mailto:info@example.com">info@example.com</a>
+								</li>
+								<li class="hd">Fax: 1(234) 567 8901</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6 footer-grid">
+						<div class="footer-title">
+							<h3>Recent Posts</h3>
+						</div>
+						<div class="footer-list">
+							<div class="flickr-grid">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{asset('images/g1.jpg')}}" class="img-fluid" alt=" ">
+								</a>
+							</div>
+							<div class="flickr-grid">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{asset('images/g2.jpg')}}" class="img-fluid" alt=" ">
+								</a>
+							</div>
+							<div class="flickr-grid">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{asset('images/g3.jpg')}}" class="img-fluid" alt=" ">
+								</a>
+							</div>
+							<div class="flickr-grid">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{asset('images/g4.jpg')}}" class="img-fluid" alt=" ">
+								</a>
+							</div>
+							<div class="flickr-grid">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{asset('images/g5.jpg')}}" class="img-fluid" alt=" ">
+								</a>
+							</div>
+							<div class="flickr-grid">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{asset('images/g6.jpg')}}" class="img-fluid" alt=" ">
+								</a>
+							</div>
+							<div class="flickr-grid">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{asset('images/g7.jpg')}}" class="img-fluid" alt=" ">
+								</a>
+							</div>
+							<div class="flickr-grid">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{asset('images/g9.jpg')}}" class="img-fluid" alt=" ">
+								</a>
+							</div>
+							<div class="flickr-grid">
+								<a href="#" data-toggle="modal" data-target="#myModal">
+									<img src="{{asset('images/g8.jpg')}}" class="img-fluid" alt=" ">
+								</a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6 footer-grid">
+						<div class="footer-title">
+							<h3>Subscribe</h3>
+						</div>
+						<p>Vivamus magna justo, lacinia eget consectetur sed.</p>
+						<form action="#" method="post" class="newsletter">
+							<input class="email" type="email" placeholder="Your email..." required="">
+							<button class="btn1">
+								<i class="far fa-envelope"></i>
+							</button>
+						</form>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!---->
+		<div class="copyright py-3">
+			<div class="container">
+				<div class="copyrighttop">
+					<ul>
+						<li>
+							<h4>Follow us on:</h4>
+						</li>
+						<li>
+							<a class="facebook" href="#">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+						</li>
+						<li>
+							<a class="facebook" href="#">
+								<i class="fab fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a class="facebook" href="#">
+								<i class="fab fa-google-plus-g"></i>
+							</a>
+						</li>
+						<li>
+							<a class="facebook" href="#">
+								<i class="fab fa-pinterest-p"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="copyrightbottom">
+					<p>© 2018 Home Loan. All Rights Reserved | Design by
+						<a href="http://w3layouts.com/">W3layouts</a>
+					</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Home Loan</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="agileits-w3layouts-info">
+							<img src="images/g6.jpg" class="img-fluid" alt=""/>
+							<p>Duis venenatis, turpis eu bibendum porttitor, sapien quam ultricies tellus, ac rhoncus risus odio eget nunc. Pellentesque ac fermentum diam. Integer eu facilisis nunc, a iaculis felis. Pellentesque pellentesque tempor enim, in dapibus turpis porttitor quis.
+							</p>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script src="{{asset('js/jquery-2.2.3.min.js')}}"></script>
+		<!-- js-->
+		<!-- Banner Responsiveslides -->
+		<script src="{{asset('js/responsiveslides.min.js')}}"></script>
+		<script>
+			// You can also use "$(window).load(function() {"
+            $(function () { // Slideshow 4
+            $("#slider3").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: false,
+            speed: 500,
+            namespace: "callbacks",
+            before: function () {
+            $('.events').append("<li>before event fired.</li>");
+            },
+            after: function () {
+            $('.events').append("<li>after event fired.</li>");
+            }
+            });
+
+            });
+		</script>
+		<!-- // Banner Responsiveslides -->
+		<!-- stats -->
+		<script src="{{asset('js/jquery.waypoints.min.js')}}"></script>
+		<script src="{{asset('js/jquery.countup.js')}}"></script>
+		<script>
+			$('.counter').countUp();
+		</script>
+		<!-- //stats -->
+		<!--pop-up-box -->
+		<script src="{{asset('js/jquery.magnific-popup.js')}}"></script>
+		<script>
+			$(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+            });
+            });
+		</script>
+		<!-- //pop-up-box -->
+		<!-- Bootstrap Core JavaScript -->
+		<script src="{{asset('js/bootstrap.js')}}"></script>
+		<!-- //Bootstrap Core JavaScript -->
+	</body>
+</html>
