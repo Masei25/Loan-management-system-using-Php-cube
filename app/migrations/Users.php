@@ -26,6 +26,7 @@ class Users implements MigrationInterface
                 $table->field('phone')->int();
                 $table->field('transpin')->varchar();
                 $table->field('password')->varchar();
+                $table->field('access_type')->int();
             });
     }
 

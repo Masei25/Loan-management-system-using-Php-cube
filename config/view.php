@@ -23,7 +23,9 @@ return array(
         'notification',
         'get_notification',
         'remove_notification',
-        'is_authenticated'
+        'is_authenticated',
+        'getLoanDetail',
+        'getUserDetail'
     ),
 
     #Filters allowed in view

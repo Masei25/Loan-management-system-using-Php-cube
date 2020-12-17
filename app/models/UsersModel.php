@@ -20,6 +20,7 @@ class UsersModel extends Model
         'phone',
         'transpin',
         'password',
+        'access_type',
         'created_at',
         'updated_at'
     );

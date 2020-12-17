@@ -6,6 +6,9 @@ use App\Models\UsersModel;
 
 class UsersProvider
 {
+    const ACCESS_TYPE_ADMIN = 1;
+    const ACCESS_TYPE_USER = 0;
+
     private $_model;
 
     /**

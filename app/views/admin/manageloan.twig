@@ -1,0 +1,109 @@
+{% extends "layout/header.twig" %}
+
+{% block title %}
+	Manage Loan
+{% endblock title %}
+
+{% block main %}
+	<section class="mt-3 bg-gray-200">
+		<div class="grid grid-cols-4 grid-flow-col gap-4">
+			<div class="bg-gray-800 row-span-2 d-none d-sm-block">
+				<div class="ml-3 hover:bg-gray-500 w-auto rounded">
+					<a href="{{url('/admin/members')}}" class="flex mt-4 text-white">
+						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+						</svg>
+						Members
+					</a>
+				</div>
+				<div class="">
+					<div class="ml-3 hover:bg-gray-500 w-auto rounded hover:p-4">
+						<a href="" class="flex mt-4 text-white">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+							</svg>
+							Applied Loan
+						</a>
+					</div>
+					<div class="ml-3 hover:bg-gray-500 w-auto rounded hover:p-4">
+						<a href="" class="flex mt-4 text-white">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+							</svg>
+							Payment History
+						</a>
+					</div>
+					<div class="ml-3 hover:bg-gray-500 w-auto rounded hover:p-4">
+						<a href="" class="flex mt-4 text-white">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+							</svg>
+							Repayment Record
+						</a>
+					</div>
+					<div class="ml-3 hover:bg-gray-500 w-auto rounded hover:p-4">
+						<a href="" class="flex mt-20 text-white">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+							</svg>
+							Help & Support
+						</a>
+					</div>
+					<div class="ml-3 hover:bg-gray-500 w-auto rounded hover:p-4">
+						<a href="" class="flex mt-4 mb-10 text-white">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+							</svg>
+							Settings
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="rounded border-l-8 col-span-8 mt-3">
+				<table class="table-auto border">
+					<tr>
+						<th class="p-3">First Name:</th>
+						<td>{{user.firstname}}</td>
+					</tr>
+					<tr>
+						<th class="p-3">Last Name:</th>
+						<td>{{user.lastname}}</td>
+					</tr>
+					<tr>
+						<th class="p-3">Email:</th>
+						<td>{{user.email}}</td>
+					</tr>
+					<tr>
+						<th class="p-3">Phone Number:</th>
+						<td>{{user.phone}}</td>
+					</tr>
+					<tr>
+						<th class="p-3">Loan Number:</th>
+						<td>{{loan.loannumber}}</td>
+					</tr>
+					<tr>
+						<th class="p-3">Amount:</th>
+						<td>{{loan.amount}}</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="mt-3 col-span-2 w-5/12">
+				<form action="#" method="post">
+					<label for="numbers" class="font-lg">Manage Loan</label>
+					<select class="form-control" id="status" name="status">
+						<option value="0">Under Review</option>
+						<option value="1">Approved</option>
+						<option value="2">Rejected</option>
+					</select>
+					<input type="submit" value="submit" class="p-2 bg-red-200 mt-2">
+				</form>
+			</div>
+
+
+		</div>
+	</section>
+
+{% endblock main %}

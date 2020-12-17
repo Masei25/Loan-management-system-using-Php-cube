@@ -26,7 +26,8 @@ $router->group()->use('auth_check')->namespace('Auth')->register(function(Router
     $router->post('/login', 'LoginController.login');
 });
 
-$router->group('/dashboard')->use('auth')->namespace('Dashboard')->register(function(Router $router){
+//users route
+$router->group('/dashboard')->use(['auth', 'user_check'])->namespace('Dashboard')->register(function(Router $router){
     //route to dashboard
     $router->get('/', 'MainController.index');
     $router->get('/logout', 'MainController.logout');
@@ -34,3 +35,14 @@ $router->group('/dashboard')->use('auth')->namespace('Dashboard')->register(func
     $router->get('/apply', 'ApplyController.apply');
     $router->post('/apply', 'ApplyController.applyAction');
 });
+
+//admin route
+$router->group('/admin')->use(['auth', 'admin_check'])->namespace('Admin')->register(function(Router $router){
+    //route to admin dashboard
+    $router->get('/', 'MainController.index');
+    $router->get('/members', 'MainController.members');
+    $router->get('/manageloan/{id}', 'ManageloanController.displayloan');
+    $router->post('/manageloan/{id}', 'ManageloanController.manageloan');   
+});
+
+$router->get('/logout', 'MainController.logout')->namespace('Admin');

@@ -6,6 +6,10 @@ use App\Models\LoanModel;
 
 class LoanProvider
 {
+    const ACCESS_TYPE_PENDING = 0;
+    const ACCESS_TYPE_APPROVED = 1;
+    const ACCESS_TYPE_REJECTED = 2;
+    
     private $_model;
 
     /**

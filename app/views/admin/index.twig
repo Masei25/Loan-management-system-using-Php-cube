@@ -1,7 +1,7 @@
 {% extends "layout/header.twig" %}
 
 {% block title %}
-	Dashboard
+	admin
 {% endblock title %}
 
 {% block main %}
@@ -9,11 +9,11 @@
 		<div class="grid grid-cols-4 grid-flow-col gap-4">
 			<div class="bg-gray-800 row-span-2 d-none d-sm-block">
 				<div class="ml-3 hover:bg-gray-500 w-auto rounded">
-					<a href="" class="flex mt-4 text-white">
+					<a href="{{url('/admin/members')}}" class="flex mt-4 text-white">
 						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
 						</svg>
-						Overview
+						Members
 					</a>
 				</div>
 				<div class="">
@@ -22,7 +22,7 @@
 							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
 							</svg>
-							My Loan
+							Applied Loan
 						</a>
 					</div>
 					<div class="ml-3 hover:bg-gray-500 w-auto rounded hover:p-4">
@@ -30,7 +30,7 @@
 							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
 							</svg>
-							Portfolio
+							Payment History
 						</a>
 					</div>
 					<div class="ml-3 hover:bg-gray-500 w-auto rounded hover:p-4">
@@ -61,29 +61,13 @@
 				</div>
 			</div>
 
-			<div class="rounded border-l-8 col-span-8">
+			<div class="mt-3 col-span-3 rounded">
 				<div class="text-3xl text-green-500 text-center">
 					{{notification()}}
 				</div>
-				<div class="gap-4 mt-4 flex flex-col md:flex-row space-x-20">
-					<div class="bg-white md:p-4 rounded-2xl md:w-5/12">
-						<p class="text-gray-400 ml-4">Loan Limit Available to apply</p>
-						<p class="text-2xl text-blue-400 ml-4 font-bold">200,000.00 USD</p>
-						<a href="{{url('/dashboard/apply')}}" class="text-base text-blue-400 ml-4 rounded-lg border-blue-50">Apply now</a>
-					</div>
-
-					<div class="bg-white md:p-4 rounded-2xl md:w-5/12">
-						<p class="text-gray-400 ml-4">Outstanding Loan Amount</p>
-						<p class="text-2xl text-blue-400 ml-4 font-bold">800,000.00 USD</p>
-						<p class="text-gray-400 ml-4">active Loan</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="mt-3 col-span-3 rounded">
 				<ul class="nav nav-tabs ml-3" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" data-toggle="tab" href="#home">Applied Loans</a>
+						<a class="nav-link active" data-toggle="tab" href="#home">Under Review</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" data-toggle="tab" href="#menu1">Approved</a>
@@ -97,29 +81,23 @@
 						<table class="table-auto border w-full bg-white rounded-2xl">
 							<thead>
 								<tr class="border text-center text-gray-500 bg-gray-100">
-									<th class="border">Applied Date</th>
+									<th class="border">Customer ID</th>
+									<th class="border">Release Date</th>
 									<th class="border">Loan Number</th>
 									<th class="border">Loan Amount</th>
 									<th class="border">Loan due date</th>
-									<th class="border">Status</th>
+                                    <th class"border">Action</th>
 								</tr>
 							</thead>
 							<tbody>
 								{% for loan in loans %}
 									<tr class="border text-center">
+										<td class="border">{{loan.userid}}</td>
 										<td class="border">{{loan.created_at | date('Y-m-d')}}</td>
 										<td class="border">{{loan.loannumber}}</td>
 										<td class="border">{{loan.amount}}</td>
 										<td class="border">{{loan.duedate}}</td>
-										<td class="border">
-											{% if loan.status == 1 %}
-												Approved
-											{% elseif loan.status == 2 %}
-												rejected
-											{% else %}
-												Pending
-											{% endif %}
-										</td>
+                                        <td class="border"><a href="{{url(['admin/manageloan', loan.id])}}"><button class="border bg-gray-700 text-white p-1 hover:bg-gray-500" type="submit" value="submit">Manage</button></a></td>
 									</tr>
 								{% endfor %}
 							</tbody>
@@ -130,7 +108,8 @@
 						<table class="table-auto border w-full bg-white rounded-2xl">
 							<thead>
 								<tr class="border text-center text-gray-500 bg-gray-100">
-									<th class="border">Approved Date</th>
+									<th class="border">Customer ID</th>
+									<th class="border">Release Date</th>
 									<th class="border">Loan Number</th>
 									<th class="border">Loan Amount</th>
 									<th class="border">Loan due date</th>
@@ -140,11 +119,12 @@
 							<tbody>
 								{% for approveds in approved %}
 									<tr class="border text-center">
+										<td class="border">{{approveds.userid}}</td>
 										<td class="border">{{approveds.created_at | date('Y-m-d')}}</td>
 										<td class="border">{{approveds.loannumber}}</td>
 										<td class="border">{{approveds.amount}}</td>
 										<td class="border">{{approveds.duedate}}</td>
-										<td class="border">{{approveds.status}}</td>
+										<td class="border">Approved</td>
 									</tr>
 								{% endfor %}
 							</tbody>
@@ -154,19 +134,23 @@
 						<table class="table-auto border w-full bg-white rounded-2xl">
 							<thead>
 								<tr class="border text-center text-gray-500 bg-gray-100">
-									<th class="border">Rejected Date</th>
+									<th class="border">Customer ID</th>
+									<th class="border">Release Date</th>
 									<th class="border">Loan Number</th>
 									<th class="border">Loan Amount</th>
+									<th class="border">Loan due date</th>
 									<th class="border">Status</th>
 								</tr>
 							</thead>
 							<tbody>
 								{% for rejecteds in rejected %}
 									<tr class="border text-center">
+										<td class="border">{{rejecteds.userid}}</td>
 										<td class="border">{{rejecteds.created_at | date('Y-m-d')}}</td>
 										<td class="border">{{rejecteds.loannumber}}</td>
 										<td class="border">{{rejecteds.amount}}</td>
-										<td class="border">{{rejecteds.status}}</td>
+										<td class="border">{{rejecteds.duedate}}</td>
+										<td class="border">Rejected</td>
 									</tr>
 								{% endfor %}
 							</tbody>
@@ -178,6 +162,9 @@
 
 			</div>
 
+
 		</div>
+
 	</section>
+
 {% endblock main %}

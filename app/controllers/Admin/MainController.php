@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Dashboard;
+namespace App\Controllers\Admin;
 
 use App\Core\Tools\Auth;
 use App\Models\LoanModel;
@@ -12,30 +12,34 @@ class MainController extends Controller
 {
     public function index(Request $request, Response $response)
     {   
-        $user = $request->user()->id();
-     
+
+        $user = Auth::user();
         $loans = LoanModel::select()
-                    ->where('userid', $user)
+                    ->where('status', 0)
                     ->fetchAll();
         
         $approved = LoanModel::select()
-                    ->where('userid', $user)
-                    ->and('status', 1)
+                    ->where('status', 1)
                     ->fetchAll();
-                   
+                    
         $rejected = LoanModel::select()
-                    ->where('userid', $user)
-                    ->and('status', 2)
+                    ->where('status', 2)
                     ->fetchAll();
 
-        return $response->view('dashboard.index', [
+        return $response->view('/admin/index', [
             'loans' => $loans,
             'approved' => $approved,
             'rejected' => $rejected
         ]);
     }
 
-    public function logout(Request $request, Response $response){
+    public function members(Request $request, Response $response)
+    {
+        return $response->view('admin/members');
+    }
+
+    public function logout(Request $request, Response $response)
+    {
         Auth::logout();
         return $response->redirect('/');
     }
