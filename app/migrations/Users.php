@@ -27,6 +27,7 @@ class Users implements MigrationInterface
                 $table->field('transpin')->varchar();
                 $table->field('password')->varchar();
                 $table->field('access_type')->int();
+                $table->field('total_loan')->int();
             });
     }
 

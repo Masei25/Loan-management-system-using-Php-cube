@@ -13,7 +13,6 @@ class ApplyController extends Controller
 {
     public function apply(Request $request, Response $response)
     {   
-
         return $response->view('dashboard.apply');
     }
 
@@ -25,7 +24,7 @@ class ApplyController extends Controller
         $transpin = $request->input('transpin');
         $transpin2 = $request->input('transpin2');
         $duedate = date('d-m-Y', strtotime(' +30 day'));
-        $status = LoanProvider::ACCESS_TYPE_PENDING;
+        $status = LoanProvider::ACCESS_TYPE_PENDING;                      
         
         if(strval($amount) > 200000){
             return $response->withSession('msg', 'Amount is above limit')->redirect($request->url()->getPath());
@@ -34,6 +33,8 @@ class ApplyController extends Controller
         $amount->validate('required');
         $transpin->validate('required')->equals($transpin2, 'Incorrect transaction pin');
 
+        $total_loan = $user->id();
+
         LoanModel::createEntry([
             'userid' => $user->id(),
             'amount' => $amount,
@@ -41,6 +42,8 @@ class ApplyController extends Controller
             'duedate' => $duedate,
             'status' => $status
         ]);
+
+
 
         $msg = 'Loan application successful';
         return $response->withSession('msg', $msg)->redirect('/dashboard');

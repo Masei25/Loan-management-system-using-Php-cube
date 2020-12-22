@@ -16,6 +16,7 @@ $router->group()->use('auth_check')->namespace('Auth')->register(function(Router
     $router->get('/about', '@about');
     $router->get('/services', '@services');
     $router->get('/contact', '@contact');
+    $router->get('/404', '@404');
 
     //route for the registration page
     $router->get('/register', '@register');
@@ -31,6 +32,7 @@ $router->group('/dashboard')->use(['auth', 'user_check'])->namespace('Dashboard'
     //route to dashboard
     $router->get('/', 'MainController.index');
     $router->get('/logout', 'MainController.logout');
+    $router->get('/404', '@404');
 
     $router->get('/apply', 'ApplyController.apply');
     $router->post('/apply', 'ApplyController.applyAction');
@@ -42,7 +44,8 @@ $router->group('/admin')->use(['auth', 'admin_check'])->namespace('Admin')->regi
     $router->get('/', 'MainController.index');
     $router->get('/members', 'MainController.members');
     $router->get('/manageloan/{id}', 'ManageloanController.displayloan');
-    $router->post('/manageloan/{id}', 'ManageloanController.manageloan');   
+    $router->post('/manageloan/{id}', 'ManageloanController.manageloan');  
+    $router->get('/404', '@404'); 
 });
 
 $router->get('/logout', 'MainController.logout')->namespace('Admin');

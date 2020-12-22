@@ -74,7 +74,10 @@
 
 					<div class="bg-white md:p-4 rounded-2xl md:w-5/12">
 						<p class="text-gray-400 ml-4">Outstanding Loan Amount</p>
-						<p class="text-2xl text-blue-400 ml-4 font-bold">800,000.00 USD</p>
+						<p class="text-2xl text-red-400 ml-4 font-bold">
+						{{total_loan}}
+						
+						</p>
 						<p class="text-gray-400 ml-4">active Loan</p>
 					</div>
 				</div>
@@ -144,7 +147,7 @@
 										<td class="border">{{approveds.loannumber}}</td>
 										<td class="border">{{approveds.amount}}</td>
 										<td class="border">{{approveds.duedate}}</td>
-										<td class="border">{{approveds.status}}</td>
+										<td class="border">Approved</td>
 									</tr>
 								{% endfor %}
 							</tbody>
@@ -166,7 +169,7 @@
 										<td class="border">{{rejecteds.created_at | date('Y-m-d')}}</td>
 										<td class="border">{{rejecteds.loannumber}}</td>
 										<td class="border">{{rejecteds.amount}}</td>
-										<td class="border">{{rejecteds.status}}</td>
+										<td class="border">Rejected</td>
 									</tr>
 								{% endfor %}
 							</tbody>

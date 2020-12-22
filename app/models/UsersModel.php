@@ -21,6 +21,7 @@ class UsersModel extends Model
         'transpin',
         'password',
         'access_type',
+        'total_loan',
         'created_at',
         'updated_at'
     );

@@ -21,10 +21,10 @@ class AdminMiddleware implements MiddlewareInterface
         $user = Auth::user()->access_type();
 
         if(!$user == UsersProvider::ACCESS_TYPE_ADMIN){
-            return redirect($request->url()->getPath());
+            return redirect('/404');
         }
 
         return $request;
-        
+
     }
 }
