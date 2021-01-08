@@ -44,7 +44,6 @@ class ManageloanController extends Controller
 
         if($status == '1'){
             $currentUser = UsersModel::findByPrimaryKey($userid);
-            var_dump($currentUser); die();
             $currentId = $currentUser->id;
             $currentLoan = $currentUser->total_loan;
             $total_loan = $currentLoan + $amount;
